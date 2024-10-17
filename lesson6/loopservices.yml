@@ -1,0 +1,12 @@
+- name: start some services
+  hosts: ansible-node-03.deldel.lan
+  vars:
+    my_services:
+      - crond
+      - sshd
+  tasks:
+    - name: start some services
+      service:
+        name: "{{ item }}"
+        state: started
+      loop: "{{ my_services }}"

@@ -1,0 +1,19 @@
+---
+- name: install and run software
+  hosts: rocky
+  tasks:
+  - name: install packages
+    ansible.builtin.package:
+      name:
+        - vsftpd
+        - nmap
+        - httpd
+      state: latest
+    
+  - name: run them
+    ansible.builtin.service:
+      name: "{{ item }}"
+      state: started
+    loop:
+    - vsftpd
+    - httpd

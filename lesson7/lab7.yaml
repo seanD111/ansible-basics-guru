@@ -1,0 +1,36 @@
+---
+- name: copy conf file to local
+  hosts: rocky
+  tasks:
+  - name: install vsftp
+    dnf:
+      name: vsftpd
+      state: latest
+  - name: fetch the file
+    fetch:
+      src: /etc/vsftpd/vsftpd.conf
+      flat: yes
+      dest: /tmp/vsftpd.j2
+- name: modify file on control
+  hosts: localhost
+  become: yes
+  tasks:
+  - name: add line to file
+    lineinfile:
+      name: /tmp/vsftpd.j2
+      line: '# written on {{ ansible_hostname }}'
+      state: present
+- name: finish install
+  hosts: rocky
+  tasks:
+  - name: use template
+    template: 
+      src: /tmp/vsftpd.j2
+      dest: /tmp/vsftpd.conf
+      owner: root
+      group: root
+      mode: 0644
+
+
+
+  

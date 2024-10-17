@@ -1,0 +1,9 @@
+[rocky]
+ansible-node-01
+ansible-node-02
+
+[alpine]
+ansible-node-03
+
+[ubuntu]
+ansible-node-04

@@ -1,0 +1,12 @@
+rocky:
+  hosts:
+    ansible-node-01.deldel.lan:
+    ansible-node-02.deldel.lan:
+
+alpine:
+  hosts:
+    ansible-node-03.deldel.lan:
+
+ubuntu:
+  hosts:
+    ansible-node-04.deldel.lan:
